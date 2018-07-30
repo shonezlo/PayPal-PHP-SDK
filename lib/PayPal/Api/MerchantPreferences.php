@@ -25,6 +25,7 @@ use PayPal\Validation\UrlValidator;
  */
 class MerchantPreferences extends PayPalModel
 {
+
     /**
      * Identifier of the merchant_preferences. 128 characters max.
      *
@@ -80,7 +81,10 @@ class MerchantPreferences extends PayPalModel
      */
     public function setCancelUrl($cancel_url)
     {
-        UrlValidator::validate($cancel_url, "CancelUrl");
+        if ($cancel_url) {
+            UrlValidator::validate($cancel_url, "CancelUrl");
+        }
+
         $this->cancel_url = $cancel_url;
         return $this;
     }
@@ -104,7 +108,10 @@ class MerchantPreferences extends PayPalModel
      */
     public function setReturnUrl($return_url)
     {
-        UrlValidator::validate($return_url, "ReturnUrl");
+        if ($return_url) {
+            UrlValidator::validate($return_url, "ReturnUrl");
+        }
+
         $this->return_url = $return_url;
         return $this;
     }
